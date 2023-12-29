@@ -30,6 +30,9 @@ void AFloatingCube::BeginPlay()
 // Called every frame
 void AFloatingCube::Tick(float DeltaTime)
 {
+	int32 drawint = RandomDrawN(10, 0);
+	FString log_drawint = FString::FromInt(drawint);
+	UE_LOG(LogTemp, Warning, TEXT("This is the data: %s"), *FString(log_drawint));
 	Super::Tick(DeltaTime);
 	FVector NewLocation = GetActorLocation();
 	FRotator NewRotation = GetActorRotation();
@@ -41,3 +44,11 @@ void AFloatingCube::Tick(float DeltaTime)
 	SetActorLocationAndRotation(NewLocation, NewRotation);
 }
 
+
+int32 AFloatingCube::RandomDrawN(int len, int n)
+{
+
+	int32 drawn_ind;
+	drawn_ind = FMath::RandRange(1, len);
+	return drawn_ind;
+}

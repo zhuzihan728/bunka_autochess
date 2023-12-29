@@ -4,18 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "FloatingCube.generated.h"
+#include "Card.generated.h"
 
 UCLASS()
-class MYPROJECT_API AFloatingCube : public AActor
+class MYPROJECT_API ACard : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AFloatingCube();
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* VisualMesh;
+	ACard();
 
 protected:
 	// Called when the game starts or when spawned
@@ -24,6 +22,5 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	int32 RandomDrawN(int len, int n);
 
 };
