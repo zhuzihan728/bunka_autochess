@@ -30,9 +30,9 @@ void AFloatingCube::BeginPlay()
 // Called every frame
 void AFloatingCube::Tick(float DeltaTime)
 {
-	int32 drawint = RandomDrawN(10, 0);
-	FString log_drawint = FString::FromInt(drawint);
-	UE_LOG(LogTemp, Warning, TEXT("This is the data: %s"), *FString(log_drawint));
+	//int32 drawint = RandomDrawN(10, 0);
+	//FString log_drawint = FString::FromInt(drawint);
+	//UE_LOG(LogTemp, Warning, TEXT("This is the data: %s"), *FString(log_drawint));
 	Super::Tick(DeltaTime);
 	FVector NewLocation = GetActorLocation();
 	FRotator NewRotation = GetActorRotation();
@@ -45,10 +45,34 @@ void AFloatingCube::Tick(float DeltaTime)
 }
 
 
-int32 AFloatingCube::RandomDrawN(int len, int n)
+void AFloatingCube::RandomArrangeArr(TArray<int32> inArray, int32 n, TArray<int32>& outArray)
 {
+	// desc: choose n non-duplicate elements from inArray. 
+	// inArray: the domain to sample from
+	// n: the number of elements to sample, if n==0, n = len(inArray)
 
+	int32 len = inArray.Num();
+	TArray<int32> tempArray;
 	int32 drawn_ind;
-	drawn_ind = FMath::RandRange(1, len);
-	return drawn_ind;
+	int32 drawn_num;
+	int32 cnt = n;
+	if (cnt == 0) {
+		cnt = len + 10;
+	}
+
+	for (int32 ind = len; ind != 0; --ind)
+	{
+		if (cnt == 0) {
+			break;
+		}
+
+		drawn_ind = FMath::RandRange(1, ind) - 1;
+		drawn_num = inArray[drawn_ind];
+		tempArray.Add(drawn_num);
+		inArray[drawn_ind] = inArray[ind - 1];
+		cnt = cnt - 1;
+
+	}
+
+	outArray = tempArray;
 }
