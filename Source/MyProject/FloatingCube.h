@@ -28,4 +28,5 @@ public:
 	
 	UFUNCTION(BlueprintCallable, meta = (CallableWithoutWorldContext))
 	void RandomArrangeArr(TArray<int32> inArray, int32 n, TArray<int32>& outArray);
+
 };
