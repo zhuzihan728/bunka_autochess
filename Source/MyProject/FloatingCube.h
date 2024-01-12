@@ -25,5 +25,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	int32 RandomDrawN(int len, int n);
-
+	
+	UFUNCTION(BlueprintCallable, meta = (CallableWithoutWorldContext))
+	void RandomArrangeArr(TArray<int32> inArray, int32 n, TArray<int32>& outArray);
 };
